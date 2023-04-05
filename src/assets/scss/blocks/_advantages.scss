@@ -1,0 +1,50 @@
+.advantages {
+   background: #f6f6f6;
+
+   &__wrapper {
+      padding: 70px 0 95px 0;
+
+      text-align: center;
+   }
+
+   &__items {
+      margin-top: 65px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+   }
+
+   &__item {
+      width: 240px;
+
+      &__img {
+         width: 70px;
+         height: 70px;
+         overflow: hidden;
+
+         margin-bottom: 38px;
+      }
+
+      &__title {
+         margin-bottom: 26px;
+
+         font-size: 18px;
+         font-weight: 700;
+
+         color: $black2;
+      }
+
+      &__text {
+         font-size: 14px;
+         font-weight: 300;
+
+         a {
+            color: $red;
+            &:hover {
+               text-decoration: none;
+            }
+         }
+      }
+   }
+}
