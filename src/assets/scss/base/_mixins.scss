@@ -1,0 +1,4 @@
+// fonts 
+@mixin img-bg ($url) {
+   background: url($url) center center/cover no-repeat;
+ }

@@ -1,0 +1,54 @@
+.header {
+   position: absolute;
+   width: 100%;
+   z-index: 999;
+
+   &__wrapper {
+      padding-top: 24px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+   }
+
+   &__logo img {
+      width: 251px;
+      height: 45px;
+      overflow: hidden;
+   }
+
+   &__official {
+      text-align: center;
+
+      font-weight: 500;
+      color: $white;
+
+      & p {
+         font-size: 12px;
+      }
+
+      & span {
+         font-size: 18px;
+         font-weight: 700;
+      }
+   }
+
+   &__contact {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+
+      & a {
+         font-size: 18px;
+         font-weight: 700;
+
+         color: $white;
+
+         text-decoration: none;
+         &:hover {
+            text-decoration: underline;
+         }
+      }
+   }
+}

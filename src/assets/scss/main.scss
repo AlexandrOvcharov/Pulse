@@ -1,0 +1,28 @@
+@import './vendor/bootstrap-reboot.min.scss';
+@import './vendor/bootstrap-grid.min.scss';
+@import './vendor/fonts.scss';
+@import './base/vars';
+@import './base/mixins';
+
+*, p {
+      margin: 0;
+      padding: 0;
+}
+
+body {
+      font-family: 'Museo Sans';
+}
+
+.container {
+      width: 100%;
+      max-width: 945px;
+}
+
+
+
+@import './blocks/buttons';
+@import './blocks/header';
+@import './blocks/intro';
+
+
+
