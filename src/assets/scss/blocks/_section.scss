@@ -2,7 +2,16 @@
    &__title {
       font-size: 30px;
       font-weight: 700;
+      text-transform: uppercase;
 
       color: $black2;
+
+      &--left {
+         font-size: 36px;
+         color: $white;
+         text-align: left;
+
+         max-width: 775px;
+      }
    }
 }
