@@ -24,21 +24,27 @@ const path = {
    build: {
       html: distPath,
       css: distPath +  "/assets/css/",
+      cssVendors: distPath +  "/assets/css/vendors",
       js: distPath +  "/assets/js/",
+      jsVendor: distPath +  "/assets/js/vendor/",
       images: distPath +  "/assets/images/",
       fonts: distPath +  "/assets/fonts/"
    },
    src: {
       html: srcPath + "*.html",
-      css: srcPath + "assets/scss/*.scss",
+      scss: srcPath + "assets/scss/*.scss",
+      css: srcPath + "assets/css/*.css",
+      jsVendor: srcPath + "assets/js/vendor/**/*.js",
       js: srcPath + "assets/js/*.js",
       images: srcPath + "assets/images/**/*.{jpg,png,svg,gif,ico,webp,webmanifest,xml,json}",
       fonts: srcPath + "assets/fonts/**/*.{eot,woff,woff2,ttf,svg}",
    },
    watch: {
       html: srcPath + "**/*.html",
-      css: srcPath + "assets/scss/**/*.scss",
+      scss: srcPath + "assets/scss/**/*.scss",
+      css: srcPath + "assets/css/**/*.css",
       js: srcPath + "assets/js/**/*.js",
+      jsVendor: srcPath + "assets/js/**/*.js",
       images: srcPath + "assets/image/**/*.{jpg,png,svg,gif,ico,webp,webmanifest,xml,json}",
       fonts: srcPath + "assets/fonts/**/*.{eot,woff,woff2,ttf,svg}",
    },
@@ -69,8 +75,8 @@ function html() {
       .pipe(browserSync.reload({stream: true }))
 }
 
-function css() {
-   return src(path.src.css, { base: srcPath + "/assets/scss/" })
+function scss() {
+   return src(path.src.scss, { base: srcPath + "/assets/scss/" })
       .pipe(plumber({
          errorHandler: function(err) {
             notify.onError({
@@ -99,6 +105,12 @@ function css() {
       .pipe(browserSync.reload({stream: true }))
 }
 
+function css(){
+   return src(path.src.css, { base: srcPath + "/assets/css" })
+   .pipe(dest(path.build.cssVendors))
+   .pipe(browserSync.reload({stream: true }))
+}
+
 function js() {
    return src(path.src.js, {base: srcPath + "/assets/js"})
       .pipe(plumber({
@@ -114,10 +126,16 @@ function js() {
       .pipe(dest(path.build.js))
       .pipe(uglify())
       .pipe(rename({
-         suffix: "min",
+         suffix: ".min",
          extname: ".js"
       }))
       .pipe(dest(path.build.js))
+      .pipe(browserSync.reload({stream: true }))
+}
+
+function jsVendor() {
+   return src(path.src.jsVendor, {base: srcPath + "/assets/js/vendor/"})
+      .pipe(dest(path.build.jsVendor))
       .pipe(browserSync.reload({stream: true }))
 }
 
@@ -140,23 +158,27 @@ function clean() {
 
 function watchFiles() {
    gulp.watch([path.watch.html] , html)
+   gulp.watch([path.watch.scss] , scss)
    gulp.watch([path.watch.css] , css)
    gulp.watch([path.watch.js] , js)
+   gulp.watch([path.watch.jsVendor] , jsVendor)
    gulp.watch([path.watch.images] , images)
    gulp.watch([path.watch.fonts] , fonts)
 }
 
 
 
-const build = gulp.series(clean, gulp.parallel(images,html,css,js,fonts));
+const build = gulp.series(clean, gulp.parallel(images,html,scss,css,js,jsVendor,fonts));
 const watch = gulp.parallel(build, watchFiles, serve)
 
 
 exports.html = html
-exports.css = css
+exports.scss = scss
 exports.js = js
+exports.jsVendor = jsVendor
 exports.images = images
 exports.clean = clean
+exports.css = css
 
 exports.build = build
 exports.watch = watch

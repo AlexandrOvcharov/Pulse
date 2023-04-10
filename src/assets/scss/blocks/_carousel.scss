@@ -1,0 +1,26 @@
+.carousel {
+   padding: 81px 0;
+   width: 750px;
+   margin: 0 auto;
+
+   position: relative;
+
+   .slider-arrows {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: -70px;
+      border: 0;
+      background: 0;
+
+      &--right {
+         left: auto;
+         right: -70px;
+      }
+
+      img {
+         width: 31px;
+         height: 50px;
+      }
+   }
+}

@@ -1,10 +1,2 @@
-//= componets/1.js
-//= componets/2.js
+//= componets/carousel.js
 
-alert("hello world");
-alert("hello world");
-alert("hello world");
-alert("hello world");
-alert("hello world");
-alert("hello world");
-alert("hello world");

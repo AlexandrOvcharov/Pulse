@@ -1,5 +1,3 @@
-@import './vendor/bootstrap-reboot.min.scss';
-@import './vendor/bootstrap-grid.min.scss';
 @import './vendor/fonts.scss';
 @import './base/vars';
 @import './base/mixins';
@@ -27,6 +25,7 @@ body {
 @import './blocks/intro';
 @import './blocks/advantages';
 @import './blocks/consultation';
+@import './blocks/carousel';
 
 
 
