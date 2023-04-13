@@ -30,7 +30,7 @@
 
       transform: skew(-27deg);
 
-      transition: all .2s ease-in-out;
+      transition: all .1s linear;
       
 
       &:hover {
@@ -50,21 +50,84 @@
    }
 
    &__content {
-      display: flex;
+      display: none;
       margin: 0 auto;
+      margin-bottom: 15px;
       flex-wrap: wrap;
       align-items: stretch;
       row-gap: 15px;
       column-gap: 10px;
+
+      transition: .3s all;
+
+      &--active {
+         display: flex;
+      }
    }
 
    &__card {
       padding: 20px 20px 27px 20px;
       width: 300px;
       border: 2px solid $white4;
+      overflow: hidden;
 
       hr {
          margin: 20px 0;
+      }
+
+      &__wrapper {
+         display: flex;
+         width: calc(200% + 40px);
+      }
+
+      &__content {
+         width: 50%;
+         transform: translateX(-110%);
+         margin-right: 0px;
+         transition: .5s all;
+         &--active {
+            transform: translateX(0%);
+            margin-right: 20px;
+         }
+      }
+
+      &__list {
+         position: relative;
+         width: 50%;
+         margin-left: 20px;
+         padding-right: 20px;
+         transform: translateX(0%);
+         transition: .5s all;
+
+         min-height: 360px;
+         li {
+            margin-bottom: 10px;
+            padding-left: 19px;
+            
+            font-size: 14px;
+            font-weight: 300;
+            text-align: left;
+            list-style-type: none;
+
+            position: relative;
+
+            &::before {
+               content: "";
+
+               width: 5px;
+               height: 5px;
+               background: $red;
+
+               position: absolute;
+               top: 5px;
+               left: -13px;
+            }
+         }
+
+         &--active {
+            transform: translateX(-100%);
+            margin-left: 0px;
+         }
       }
 
       &__img {
@@ -102,10 +165,17 @@
          font-weight: 500;
          text-align: center;
          color: $red;
+         text-transform: uppercase;
 
          &:hover {
             color: $red;
             text-decoration: none;
+         }
+         &--list-exit {
+            position: absolute;
+            bottom: 27px;
+            left: 50%;
+            transform: translate(calc(-50% - 19px))
          }
       }
 
